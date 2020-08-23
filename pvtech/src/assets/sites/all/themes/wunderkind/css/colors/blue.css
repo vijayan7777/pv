@@ -4,10 +4,10 @@ Blue Color Skin
 =============================================== */
 
 ::-moz-selection {
- background: #2ac5ee;
+ background: #23336B;
 }
 ::selection {
-	background: #2ac5ee;
+	background: #23336B;
 }
 
 .btn-home a,
@@ -22,7 +22,7 @@ Blue Color Skin
 .blog-list li:hover,
 .cbp-l-filters-button .cbp-filter-item-active,
 .cbp-l-filters-button .cbp-filter-counter {
-	background: #2ac5ee;
+	background: #23336B;
 }
 
 
@@ -52,7 +52,7 @@ figure figcaption a:hover,
 .post-title a:focus,
 #main-nav .active > a
  {
-	color: #2ac5ee;
+	color: #23336B;
 }
 
 
@@ -61,5 +61,5 @@ figure figcaption a:hover,
 }
 
 .cbp-l-filters-button .cbp-filter-counter:before {
-	border-top: 4px solid #2ac5ee;
+	border-top: 4px solid #23336B;
 }
