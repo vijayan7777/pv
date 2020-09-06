@@ -24,32 +24,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "src/assets/sites/all/themes/wunderkind/theme_panel/theme_panel.css",
-              "src/assets/sites/all/themes/wunderkind/css/colors/blue.css"
+              "src/styles.css",
+              "src/assets/css/init.css",
+              "src/assets/css/ion-icons.min.css",
+              "src/assets/css/etline-icons.min.css",
+              "src/assets/css/theme.css",
+              "src/assets/css/custom.css",
+              "src/assets/css/colors/purple.css"
             ],
             "scripts": [
-             
-              "src/assets/sites/all/modules/jquery_update/replace/ui/external/jquery.cookie1683.js",
-              "src/assets/sites/all/themes/wunderkind/js/jquery.retina75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/gmap3.min75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/bootstrap.min75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/jquery.mb.YTPlayer75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/jquery.stellar75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/jquery.sticky75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/jquery.counterup.min75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/jquery.fitvids75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/modernizr.custom75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/toucheffects75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/wow.min75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/waypoints.min75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/jquery.easing.1.3.min75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/jquery.cubeportfolio.min75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/jquery.touchSwipe.min75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/jquery.liquid-slider75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/jquery.flexslider-min75f4.js",
-              "src/assets/sites/all/themes/wunderkind/js/scripts75f4.js",
-              "src/assets/sites/all/themes/wunderkind/theme_panel/theme_panel.js"
+              "src/assets/js/jquery.js",
+              "src/assets/js/init.js",
+              "src/assets/js/scripts.js"
             ]
           },
           "configurations": {
@@ -143,10 +129,6 @@
           }
         }
       }
-    }
-  },
-  "defaultProject": "pvtech",
-  "cli": {
-    "analytics": false
-  }
+    }},
+  "defaultProject": "pvtech"
 }
