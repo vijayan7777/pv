@@ -4430,15 +4430,15 @@ ul {
 /*////////////////////////////////////////
 // Demo Picker Page
 ///////////////////////////////////////*/
-#wunderkind-demo[data-overlay-dark]:before {background: #19191b} /*  #19191b  */
-#wunderkind-demo .container {
+#pvtheme-demo[data-overlay-dark]:before {background: #19191b} /*  #19191b  */
+#pvtheme-demo .container {
 	padding: 0 70px;
 }
-#wunderkind-demo .container .row {
+#pvtheme-demo .container .row {
 	padding: 60px 0;
 }
 @media (max-width: 992px) {
-	#wunderkind-demo .container .row {
+	#pvtheme-demo .container .row {
 		padding: 0;
 	}
 }
